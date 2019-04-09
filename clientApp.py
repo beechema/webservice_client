@@ -8,12 +8,13 @@ def get_time(data):
     try:
         timeDict = json.loads(data.decode())
         if 'currentTime' in timeDict:
-            datetime.strptime(timeDict['currentTime'], '%Y-%m-%dT%H:%M:%S')
+            try:
+                datetime.strptime(timeDict['currentTime'], '%Y-%m-%dT%H:%M:%S')
+            except ValueError:
+                return 'Invalid format or not a timestamp'
             return timeDict['currentTime']
         else:
             return 'No currentTime key'
-    except ValueError:
-        return 'Invalid format or not a timestamp'
     except:
         return 'Failed to decode json'
 

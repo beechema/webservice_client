@@ -20,7 +20,7 @@ class TestClientMethods(unittest.TestCase):
         self.assertEqual(get_time(val), 'No currentTime key')
 
     def test_bad_json(self):
-        self.assertEqual(get_time({'test':0}), 'Failed to decode json')
+        self.assertEqual(get_time('test:0,'), 'Failed to decode json')
 
 if __name__ == '__main__':
     unittest.main()
